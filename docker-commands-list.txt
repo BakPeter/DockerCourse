@@ -1,0 +1,52 @@
+Basic docker file in a project 
+
+FROM node:14 - base the image on node, v14
+WORKDIR /app - create the container file system working directory, named “app”
+COPY package.json - copy the file package.json in to the working directory
+RUN npm install - ryn the command “npm install”, will install all the packages in package.json
+COPY .. - copy the rest of the files to the working directory
+EXPOSE 3000 - expose port 3000 for the containers
+CMD [“node”, “app.mjs”] - execute app.js with the node command
+
+docker build . 
+build docker image, by settings specified in the the Dockerfile, in the directory
+
+docker run -p 3000:4000 <doker-image-name>
+run container from image name <docker-image-name>
+publishes(p) port 3000 external, 4000 internal, to container
+
+docker stop <docker-container-name> 
+stop docker container named <docker container name>
+
+docker ps
+show, in a list, all running containers processes(ps)
+
+docker ps -a
+show, in a list, all created containers processes(ps)
+
+docker run -it node
+run docker with interactive(it) node shell
+
+docker images -a/- -all
+list all images
+
+docker start <docker-name>
+restart existing container, not blockemg the cmd and not creating new container, like docker run
+
+docker rm <container name>
+deletes the container named <container-name>
+It’s possible to delete several containers in one command
+
+docker container prune
+deletes all not running containers
+
+docker rmi <image name>
+deletes the image named <image-name>
+it’s possible to delete several images in one command
+not possible to deleted images which has container based on them
+
+docker image prune
+deletes all images, possible to delete
+
+docker image inspect <image-name>
+shows images metadata, including exported port
